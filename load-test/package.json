@@ -1,0 +1,13 @@
+{
+    "name": "load-tests",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "lint": "tsc"
+    },
+    "devDependencies": {
+        "@types/k6": "^0.54.2",
+        "typescript": "~5.8.2"
+    }
+}

@@ -1,0 +1,14 @@
+**
+!e2e
+!e2e/**
+e2e/.sonatype-config
+!libs
+!libs/**
+!load-test
+!load-test/**
+load-test/.sonatype-config
+!.gitignore
+!.aiignore
+!.copilotignore
+!package.json
+!README.md
