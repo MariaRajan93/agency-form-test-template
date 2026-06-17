@@ -3,8 +3,6 @@ lockfileVersion: '9.0'
 settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
-  onlyBuiltDependencies:
-    - esbuild
 
 importers:
 
@@ -44,9 +42,6 @@ importers:
       dotenv:
         specifier: ^16.3.1
         version: 16.6.1
-      playwright-core:
-        specifier: 1.42.1
-        version: 1.42.1
       tsx:
         specifier: ^4.19.4
         version: 4.20.6
@@ -268,11 +263,6 @@ packages:
   lodash@4.18.1:
     resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
 
-  playwright-core@1.42.1:
-    resolution: {integrity: sha512-mxz6zclokgrke9p1vtdy/COWBH+eOZgYUVVU34C73M+4j4HLlQJHtfcqiqqxpP0o8HhMkflvfbquLX5dg6wlfA==}
-    engines: {node: '>=16'}
-    hasBin: true
-
   playwright-core@1.55.1:
     resolution: {integrity: sha512-Z6Mh9mkwX+zxSlHqdr5AOcJnfp+xUWLCt9uKV18fhzA8eyxUd8NUWzAjxUh55RZKSYwDGX0cfaySdhZJGMoJ+w==}
     engines: {node: '>=18'}
@@ -453,8 +443,6 @@ snapshots:
   jwt-decode@4.0.0: {}
 
   lodash@4.18.1: {}
-
-  playwright-core@1.42.1: {}
 
   playwright-core@1.55.1: {}
 

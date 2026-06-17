@@ -20,7 +20,7 @@ const Env = z.object({
     ATTACHMENT_S3_BUCKET_URL: z.string().url(),
     AF_ROOT_URL: z.string().url(),
     AF_E2E_TEST_USER_IDS: z.string(),
-    AGENCY_SERVICE: z.string(),
+    AGENCY_NAME: z.string(),
 });
 
 const customErrorMap: z.ZodErrorMap = (issue, ctx) => {

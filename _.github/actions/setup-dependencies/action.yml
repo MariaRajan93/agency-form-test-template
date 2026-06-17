@@ -1,0 +1,46 @@
+name: Setup Project Dependencies
+description: Setup Project Dependencies
+
+inputs:
+  dest:
+    description: 'Path to subdirectory'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Install dependencies in subdirectory
+      shell: bash
+      run: echo "Installing dependencies in subdirectory ${{ inputs.dest }}"
+    - name: Install pnpm
+      uses: pnpm/action-setup@a3252b78c470c02df07e9d59298aecedc3ccdd6d   # v3
+      with:
+        run_install: false
+    - name: Install Node.js
+      uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020   # v4
+      with:
+          node-version: '24'
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      shell: bash
+      run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_OUTPUT
+    - name: Cache pnpm store
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830   # v4
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles(format('{0}pnpm-lock.yaml', inputs.dest)) }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+    - name: Install dependencies
+      shell: bash
+      run: |
+        cd ${{ inputs.dest }}
+        pnpm install --frozen-lockfile
+    - name: Restore Turbo cache
+      uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830   # v4
+      with:
+        path: '${{ inputs.dest }}node_modules/.cache/turbo'
+        key: turbo-${{ github.run_id }}-${{ github.run_attempt }}
+        restore-keys: |
+          turbo-${{ github.run_id }}-
+          turbo-

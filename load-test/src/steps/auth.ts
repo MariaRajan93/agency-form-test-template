@@ -21,7 +21,7 @@ export const getUserAccessToken = async (userId: string) => {
     return getUserAuthInfo({
         userId,
         userPassword: config.LOAD_TEST_USER_PASSWORD,
-        clientId: `test-runner-${config.AGENCY_SERVICE}`,
+        clientId: `test-runner-${config.AGENCY_NAME}`,
         clientSecret: config.LOAD_TEST_RUNNER_CLIENT_SECRET,
     });
 };
@@ -45,7 +45,7 @@ const getUserAuthInfo = async (options: AuthenticateUserOptions) => {
         `https://www.${config.TEST_RUNNER_ENV}.auth.qld.gov.au/auth/realms/tell-us-once/protocol/openid-connect/token`,
         {
             grant_type: "password",
-            username: `test-runner-${config.AGENCY_SERVICE}_user-${userId}`,
+            username: `test-runner-${config.AGENCY_NAME}_user-${userId}`,
             password: userPassword,
             scope: "email openid profile ttg-extras",
         },

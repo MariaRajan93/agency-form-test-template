@@ -1,0 +1,53 @@
+name: Nightly E2E Test Template
+on:
+    workflow_dispatch:
+        inputs:
+            env:
+                type: choice
+                description: Environment
+                options:
+                    - uat
+                    - preprod
+                default: uat
+                required: true
+    schedule:
+        - cron: "00 17 * * 0-4" # Runs at 03:00 AEST, Monday to Friday
+
+jobs:
+    set_environment:
+        runs-on: ubuntu-22.04
+        timeout-minutes: ${{ fromJSON(vars.DEFAULT_JOB_TIMEOUT) }}
+        outputs:
+            environment: ${{steps.set_output.outputs.environment}}
+        steps:
+            - id: set_output
+              run: |
+                  case "$GITHUB_EVENT_NAME" in
+                    workflow_dispatch)
+                      environment="${{github.event.inputs.env}}"
+                      ;;
+
+                    *)
+                      environment="dev"
+                  esac
+                  echo "environment=${environment}" >> $GITHUB_OUTPUT
+            - name: show environment
+              run: echo "Tests will be run against the ${{steps.set_output.outputs.environment}} environment." >> $GITHUB_STEP_SUMMARY
+
+    e2e_test:
+        needs: set_environment
+        strategy:
+            max-parallel: 1
+            fail-fast: false
+            matrix:
+                include:
+                    - app: dtp
+                      path: "./e2e/"
+        uses: ./.github/workflows/e2e-template.yaml
+        with:
+            app: dtp
+            environment: ${{ needs.set_environment.outputs.environment }}
+            upload_artifacts: true
+            upload_to_github_pages: true
+            agent-os: "ubuntu-22.04"
+        secrets: inherit
