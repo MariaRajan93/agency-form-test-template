@@ -21,7 +21,7 @@ const getUserAuthInfo = async (requestContext: APIRequestContext) => {
     };
     const requestBody = {
         grant_type: "password",
-        username: `test-runner-${config.AGENCY_SERVICE}_user-${process.env.USER_ID}`,
+        username: `test-runner-${config.AGENCY_NAME}_user-${process.env.USER_ID}`,
         password: config.E2E_TEST_RUNNER_PASSWORD,
         scope: "email openid profile",
     };

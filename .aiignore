@@ -1,0 +1,6 @@
+.env
+.env.json
+env-config.js
+env-config.json
+.npmrc
+**/*.pem
