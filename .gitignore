@@ -7,8 +7,8 @@ e2e/.sonatype-config
 !load-test
 !load-test/**
 load-test/.sonatype-config
-!_.github
-!_.github/**
+!.github
+!.github/**
 !.gitignore
 !.aiignore
 !.copilotignore
