@@ -43,7 +43,7 @@ jobs:
                 include:
                     - app: dtp
                       path: "./e2e/"
-        uses: ./_.github/workflows/e2e-template.yaml
+        uses: ./.github/workflows/e2e-template.yaml
         with:
             app: dtp
             environment: ${{ needs.set_environment.outputs.environment }}
