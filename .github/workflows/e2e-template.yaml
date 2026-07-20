@@ -97,22 +97,22 @@ jobs:
       - name: Run Playwright tests
         id: test_run
         env:
-          DTP_ROOT_URL: ${{ vars.DTP_ROOT_URL }}
+          DTP_ROOT_URL: ${{ 'https://forms.preprod.beta.my.qld.gov.au' }}
           AF_ROOT_URL: ${{ vars.AF_ROOT_URL }}
-          E2E_DTP_FORM_NAME: ${{ vars.E2E_DTP_FORM_NAME }}
-          TC_SERVICE_BASE_URL: ${{ vars.TC_SERVICE_BASE_URL }}
-          TEST_RUNNER_ENV: ${{ vars.TEST_RUNNER_ENV }}
-          E2E_TEST_RUNNER_CLIENT_ID: ${{ vars.E2E_TEST_RUNNER_CLIENT_ID }}
-          E2E_TEST_RUNNER_CLIENT_SECRET: ${{ secrets.E2E_TEST_RUNNER_CLIENT_SECRET }}
-          E2E_TEST_USER_EMAIL: ${{ vars.E2E_TEST_USER_EMAIL }}
-          E2E_TEST_RUNNER_PASSWORD: ${{ secrets.E2E_TEST_RUNNER_PASSWORD}}
-          E2E_TEST_RUNNER_ENV: ${{ vars.E2E_TEST_RUNNER_ENV}}
-          E2E_DTP_GAPI_URL: ${{ vars.E2E_DTP_GAPI_URL }}
-          E2E_SUBSCRIBER_CLIENT_ID: ${{ vars.E2E_SUBSCRIBER_CLIENT_ID }}
-          E2E_SUBSCRIBER_CLIENT_SECRET: ${{ secrets.E2E_SUBSCRIBER_CLIENT_SECRET }}
-          E2E_TEST_USER_IDS: ${{ vars.E2E_TEST_USER_IDS }}
-          AF_E2E_TEST_USER_IDS: ${{ vars.AF_E2E_TEST_USER_IDS }}
-          ATTACHMENT_S3_BUCKET_URL: ${{ vars.ATTACHMENT_S3_BUCKET_URL}}
+          E2E_DTP_FORM_NAME: ${{ 'CC Apply' }}
+          TC_SERVICE_BASE_URL: ${{ 'https://txconfig.preprod.beta.my.qld.gov.au' }}
+          TEST_RUNNER_ENV: ${{ 'preprod' }}
+          E2E_TEST_RUNNER_CLIENT_ID: ${{  'test-runner-ccms'}}
+          E2E_TEST_RUNNER_CLIENT_SECRET: ${{ 'sH3NEcFphTjO9XJTJi6MNpVT8TxjiKV0' }}
+          E2E_TEST_USER_EMAIL: ${{ 'IndustryRDTI27@test.gov.au' }}
+          E2E_TEST_RUNNER_PASSWORD: ${{ 'effebf0c-5d45-11ec-a4eb-67627a722133'}}
+          E2E_TEST_RUNNER_ENV: ${{ 'preprod' }}
+          E2E_DTP_GAPI_URL: ${{ 'https://www.preprod.graph.qld.gov.au/graphql'}}
+          E2E_SUBSCRIBER_CLIENT_ID: ${{ 'app-queenslandonline-cardsandconcessions-subscriber-PREPROD-1750631735627'}}
+          E2E_SUBSCRIBER_CLIENT_SECRET: ${{ 'cDODlqUVPC2pn5H1Xn0pf4X0gDxjx2mK'}}
+          E2E_TEST_USER_IDS: ${{ '1'}}
+          AF_E2E_TEST_USER_IDS: ${{ '1'}}
+          ATTACHMENT_S3_BUCKET_URL: ${{ 'https://myqld-service-request-attachments-preprod-indigo.'}}
           AGENCY_NAME: ${{ vars.AGENCY_NAME }}
         run: |
           cd ./e2e/
@@ -138,11 +138,11 @@ jobs:
       - name: Publish Test Result To Queue
         if: always()
         env:
-          E2E_DTP_GAPI_URL: ${{ vars.E2E_DTP_GAPI_URL }}
-          E2E_SUBSCRIBER_CLIENT_ID: ${{ vars.E2E_SUBSCRIBER_CLIENT_ID }}
-          E2E_SUBSCRIBER_CLIENT_SECRET: ${{ secrets.E2E_SUBSCRIBER_CLIENT_SECRET }}
-          E2E_TEST_RUNNER_ENV: ${{ vars.E2E_TEST_RUNNER_ENV}}
-          E2E_DTP_FORM_NAME: ${{ vars.E2E_DTP_FORM_NAME }}
+          E2E_DTP_GAPI_URL: ${{ 'https://www.preprod.graph.qld.gov.au/graphql' }}
+          E2E_SUBSCRIBER_CLIENT_ID: ${{ 'app-queenslandonline-cardsandconcessions-subscriber-PREPROD-1750631735627'}}
+          E2E_SUBSCRIBER_CLIENT_SECRET: ${{ 'cDODlqUVPC2pn5H1Xn0pf4X0gDxjx2mK'}}
+          E2E_TEST_RUNNER_ENV: ${{ 'preprod' }}
+          E2E_DTP_FORM_NAME: ${{ 'CC Apply' }}
           E2E_TEST_OUTCOME: ${{ env.E2E_TEST_OUTCOME }}
         run: |
           echo "E2E_TEST_OUTCOME is: $E2E_TEST_OUTCOME"
