@@ -146,6 +146,6 @@ jobs:
           E2E_DTP_FORM_NAME: ${{ vars.E2E_DTP_FORM_NAME }}
           E2E_TEST_OUTCOME: ${{ env.E2E_TEST_OUTCOME }}
         run: |
-        echo "E2E_TEST_OUTCOME is: $E2E_TEST_OUTCOME"
-        bash $GITHUB_WORKSPACE/.github/scripts/publish-test-result-to-queue.sh
+            echo "E2E_TEST_OUTCOME is: $E2E_TEST_OUTCOME"
+            bash $GITHUB_WORKSPACE/.github/scripts/publish-test-result-to-queue.sh
 
